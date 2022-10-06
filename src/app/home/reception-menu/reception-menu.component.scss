@@ -1,0 +1,76 @@
+:host {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+
+  .logo {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 16px;
+    margin-top: 32px;
+
+    img {
+      height: 100px;
+    }
+  }
+
+  .departments-menu {
+    position: fixed;
+    left: 0;
+    top: 80px;
+
+    .mat-list-item {
+      border-radius: 0 8px 8px 0;
+    }
+  }
+
+  .menu-container {
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    height: fit-content;
+    margin: auto;
+    margin-top: 64px;
+  }
+
+  .menu-item {
+    position: relative;
+    display: flex;
+    text-align: center;
+    margin-left: 16px;
+    border-radius: 16px;
+    width: 150px;
+    cursor: pointer;
+    width: 250px;
+    height: 120px;
+    // background-color: #673ab7;
+    // background-color: #fff;
+    color: #000;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: 400;
+    font-size: 24px;
+    padding: 8px;
+
+    span {
+      margin: auto;
+      margin-bottom: 16px;
+    }
+
+    .icon-container {
+      position: absolute;
+      right: 0px;
+      top: 0px;
+      background-color: #fff;
+      border-radius: 0 0 0 32px;
+
+      img {
+        width: 64px;
+        height: 64px;
+        margin: 4px 4px 16px 16px;
+      }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+<span class="mat-title">Créer un nouveau patient</span>
+
+<form #patientForm="ngForm" novalidate (submit)="onSubmit(patientForm)">
+  <section>
+    <mat-form-field appearance="outline">
+      <mat-label>Nom</mat-label>
+      <input matInput type="text" name="nom" required minlength="2" [(ngModel)]="patient.nom">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Post Nom</mat-label>
+      <input matInput type="text" name="postnom" required minlength="2" [(ngModel)]="patient.postnom">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Prénom</mat-label>
+      <input matInput type="text" name="postnom" required minlength="2" [(ngModel)]="patient.prenom">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Date de naissance</mat-label>
+      <input matInput [matDatepicker]="picker" name="dateNaissance" [(ngModel)]="patient.dateNaissance" required>
+      <mat-datepicker-toggle matSuffix [for]="picker" name="date"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Addresse</mat-label>
+      <input matInput type="text" name="addresse" required minlength="2" [(ngModel)]="patient.addresse">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Téléphone</mat-label>
+      <input matInput type="tel" name="telphone" [(ngModel)]="patient.telephone">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Sexe</mat-label>
+      <mat-select #sexePatient name="sexe">
+        <mat-option value="H">Masculin</mat-option>
+        <mat-option value="F">Féminin</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </section>
+  <span class="flex-expand"></span>
+  <button mdc-button unelevated class="button-secondary" type="submit" style="margin-right: 16px;" (click)="onCancel()">Annuler</button>
+  <button mdc-button raised class="button-primary" type="submit">Valider</button>
+</form>

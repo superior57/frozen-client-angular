@@ -1,0 +1,21 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  .header {
+    width: calc(100% - 32px);
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 16px;
+    margin-right: 16px;
+    margin-left: 16px;
+  }
+
+  ag-grid-angular {
+    height: 400px;
+    margin-left: 16px;
+    margin-right: 16px;
+    width: auto;
+  }
+}

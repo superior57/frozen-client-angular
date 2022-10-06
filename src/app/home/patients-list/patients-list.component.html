@@ -1,0 +1,11 @@
+<div mdcHeadline4 class="title">Liste de patients</div>
+
+<ag-grid-angular
+  class="ag-theme-alpine"
+  [rowData]="patients$ | async"
+  [pagination]="true"
+  [groupIncludeFooter]="true"
+  [gridOptions]="gridOptions$ | async"
+  (cellValueChanged)="onCellValueChanged($event)"
+>
+</ag-grid-angular>

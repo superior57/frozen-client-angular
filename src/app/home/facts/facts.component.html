@@ -1,0 +1,29 @@
+<div class="content">
+  <div class="facts-card left">
+    <span class="card-contents">
+      <span class="number">{{ (patients$ | async)?.length || 0 | numberToSize }}</span>
+      <span class="description">Patients reçus</span>
+    </span>
+  </div>
+  
+  <div
+    class="facts-card"
+    [class.last]="(userHasRequiredRoles() | async) === true"
+    [class.middle]="userHasRequiredRoles() | async"
+  >
+    <span class="card-contents">
+      <span class="number">{{ (quotes$ | async)?.length || 0 | numberToSize }}</span>
+      <span class="description">Factures payées</span>
+    </span>
+  </div>
+
+  <div
+    class="facts-card right"
+    *ngIf="userHasRequiredRoles() | async"
+  >
+    <span class="card-contents">
+      <span class="number">{{ (total$ | async) || 0 | numberToSize:1 }}</span>
+      <span class="description">Perçus</span>
+    </span>
+  </div>
+</div>

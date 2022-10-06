@@ -1,0 +1,30 @@
+<form #form="ngForm" novalidate (submit)="onSubmit(form)">
+  <mat-form-field appearance="outline">
+    <mat-label>Libelé</mat-label>
+    <mat-select #libele name="libelé" [(ngModel)]="departement" required>
+      <mat-option *ngFor="let dep of departements$ | async" [value]="dep.id + '::' + getDepartementOption(dep)">{{ getDepartementOption(dep) }}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="libele.errors?.required">Le libelé de l'opération est obligatoire</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Montant (USD)</mat-label>
+    <input #montantUsd matInput type="number" name="montant-usd" [(ngModel)]="usdAmount" required>
+    <mat-error *ngIf="montantUsd.errors?.required">Le montant est obligatoire</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Montant (CDF)</mat-label>
+    <input #montantCdf matInput type="number" [(ngModel)]="cdfAmount" name="montant-cdf" required>
+    <mat-error *ngIf="montantCdf.errors?.required">Le montant est obligatoire</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Date</mat-label>
+    <input matInput [matDatepicker]="picker" name="date" [(ngModel)]="ecriture.date" required>
+    <mat-datepicker-toggle matSuffix [for]="picker" name="date"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <button type="submit" mdc-button unelevated><mdc-icon>save</mdc-icon>Engregistrer</button>
+</form>

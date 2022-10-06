@@ -1,0 +1,119 @@
+<ng-container *ngIf="connection.connected$ | async">
+  <ng-container *ngIf="(isLoginMode | async) === false">
+    <mdc-top-app-bar class="top-bar mat-elevation-z4" fixed [scrollTarget]="appContent">
+      <mdc-top-app-bar-row>
+        <mdc-top-app-bar-section align="start" title="Service de santé - PNC">
+          <img src="/assets/images/logo.png" class="logo">
+        </mdc-top-app-bar-section>
+        <mdc-top-app-bar-section align="end">
+          <button mdc-button unelevated mdcTopBarActionItem (click)="logoutUser()">déconnecter</button>&nbsp;
+          <mdc-icon>person</mdc-icon>&nbsp;
+          <span>{{ (userModel.activeUser | async)?.identifiant }}</span>
+        </mdc-top-app-bar-section>
+      </mdc-top-app-bar-row>
+    </mdc-top-app-bar>
+
+    <div class="contents">
+      <mdc-drawer class="drawer">
+        <mdc-drawer-content>
+          <mdc-list>
+            <ng-container *ngIf="userModel.userHasRoles(['admin', 'gen:01, gen:02']) | async">
+              <mdc-list-divider></mdc-list-divider>
+              <h6 mdcListGroupSubheader>Départements</h6>
+              <a mdc-list-item *ngFor="let item of departements$ | async" (click)="openDepartment(item)" [activated]="(departementModel.selected$ | async)?.id === item?.id">
+                <mdc-icon mdcListItemGraphic *ngIf="item.icon">{{item.icon}}</mdc-icon>{{ item.label }}
+              </a>
+            </ng-container>
+            <mdc-list-divider></mdc-list-divider>
+            <h6 mdcListGroupSubheader>Labels</h6>
+            
+            <a mdc-list-item routerLink="/acceuil" [class.mdc-list-item--activated]="isRouteEqualTo(['/acceuil', '/reception', '/facture/bon', '/facture/facture']) | async">
+              <mdc-icon mdcListItemGraphic>home</mdc-icon>Acceuil
+            </a>
+
+            <a
+              mdc-list-item
+              routerLink="/consultation"
+              [class.mdc-list-item--activated]="(menuModel.active$ | async) === '/consultation'"
+              *ngIf="userModel.userHasRoles(['admin', 'gen:01', 'gen:02', 'cheflabo', 'medecin']) | async"
+            >
+              <mdc-icon mdcListItemGraphic>attach_money</mdc-icon>
+              <span>Consultation</span>
+            </a>
+
+            <a 
+              mdc-list-item
+              routerLink="/utilisateurs"
+              [class.mdc-list-item--activated]="(menuModel.active$ | async) === '/utilisateurs'"
+              *ngIf="userModel.userHasRoles(['admin']) | async"
+            >
+              <mdc-icon mdcListItemGraphic>person</mdc-icon>Utilisateurs
+            </a>
+
+            <a
+              mdc-list-item
+              routerLink="/patients"
+              [class.mdc-list-item--activated]="(menuModel.active$ | async) === '/patients'"
+              *ngIf="userModel.userHasNotRoles(['partenaire']) | async"
+            >
+              <mdc-icon mdcListItemGraphic>attach_money</mdc-icon>Patients
+            </a>
+
+            <a
+              mdc-list-item routerLink="/finances"
+              [class.mdc-list-item--activated]="(menuModel.active$ | async) === '/finances'"
+              *ngIf="userModel.userHasRoles(['admin', 'tresorerier', 'gen:01', 'gen:02', 'chef-departement', 'partenaire']) | async"
+            >
+              <mdc-icon mdcListItemGraphic>store</mdc-icon>Caisse
+            </a>
+
+            <a
+              mdc-list-item
+              routerLink="/tresorerie"
+              [class.mdc-list-item--activated]="(menuModel.active$ | async) === '/tresorerie'"
+              *ngIf="userModel.userHasRoles(['admin', 'tresorerie', 'gen:01', 'gen:02', 'partenaire', 'cheflabo']) | async"
+            >
+              <mdc-icon mdcListItemGraphic>attach_money</mdc-icon>
+              <span *ngIf="userModel.userHasRoles(['cheflabo']) | async">Rapport comptes</span>
+              <span *ngIf="userModel.userHasNotRoles(['cheflabo']) | async">Trésorerie</span>
+            </a>
+            
+            <a
+              mdc-list-item
+              routerLink="/loss"
+              [class.mdc-list-item--activated]="(menuModel.active$ | async) === '/loss'"
+              *ngIf="userModel.userHasRoles(['cheflabo']) | async"
+            >
+              <mdc-icon mdcListItemGraphic>attach_money</mdc-icon>Manque à gagner
+            </a>
+
+            <a
+              mdc-list-item
+              routerLink="/reports"
+              [class.mdc-list-item--activated]="(menuModel.active$ | async) === '/reports'"
+              *ngIf="userModel.userHasRoles(['cheflabo', 'admin', 'tresorerie', 'chef-departement', 'gen:01', 'gen:02']) | async"
+            >
+              <mdc-icon mdcListItemGraphic>attach_money</mdc-icon>Rapport annuel
+            </a>
+
+            <mdc-list-divider *ngIf="userModel.userHasRoles(['admin']) | async"></mdc-list-divider>
+            <a *ngIf="userModel.userHasRoles(['admin']) | async" mdc-list-item routerLink="/configuration" [class.mdc-list-item--activated]="(menuModel.active$ | async) === '/configuration'">
+              <mdc-icon mdcListItemGraphic>settings</mdc-icon>Paramètres
+            </a>
+          </mdc-list>
+        </mdc-drawer-content>
+      </mdc-drawer>
+      <div class="app-contents" mdcDrawerAppContent #appContent>  
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="isLoginMode | async">
+    <router-outlet></router-outlet>
+  </ng-container>
+</ng-container>
+
+<ng-container *ngIf="(connection.connected$ | async) === false">
+  <app-no-connection></app-no-connection>
+</ng-container>

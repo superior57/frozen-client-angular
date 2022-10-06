@@ -1,0 +1,30 @@
+<div class="header">
+  <span class="mat-title">Rapport de compte</span>
+  <span class="flex-expand"></span>
+  <button
+    *ngIf="userModel.userHasRoles(['admin']) | async"
+    mdc-button
+    unelevated
+    matTooltip="Exporter ce rapport vers Excel"
+    aria-label="Exporter ce rapport vers Excel"
+    (click)="exportCsv()"
+  >
+    <mdc-icon>archive</mdc-icon>Vers excel
+  </button>
+  <button mdc-button unelevated (click)="recalculate()">
+    <mdc-icon>refresh</mdc-icon>Recalculer
+  </button>
+  <app-department-list></app-department-list>
+</div>
+
+<ag-grid-angular
+  (gridReady)="onGridReady($event)"
+  [rowData]="ecritures$ | async"
+  [pagination]="true"
+  class="ag-theme-alpine"
+  [groupIncludeFooter]="true"
+  [defaultColDef]="defaultColDef"
+>
+</ag-grid-angular>
+
+<app-free-entries-list *ngIf="userModel.userHasRoles(['admin', 'tresorerier', 'gen:01', 'gen:02']) | async"></app-free-entries-list>

@@ -1,0 +1,16 @@
+<app-period-selector [periodTypes]="['Annuel']"></app-period-selector>
+
+<div class="toolbar">
+  <span class="flex-expand"></span>
+  <span></span>
+  <div mdcOverline style="margin-right: 16px;">Choisir un service</div>
+  <app-department-list></app-department-list>
+</div>
+<ag-grid-angular
+  [rowData]="ecritures$ | async"
+  class="ag-theme-alpine"
+  [pagination]="true"
+  [gridOptions]="gridOptions"
+>
+
+</ag-grid-angular>

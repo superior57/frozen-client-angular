@@ -1,0 +1,47 @@
+@use '@material/top-app-bar/_index' as top-app-bar;
+@use '@material/tab/_index' as tab;
+@use '@material/tab-indicator/_index' as tab-indicator;
+@use '@material/ripple/_index' as ripple;
+@use '@material/theme/color-palette' as material-color;
+@use '@material/theme';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: fit-content;
+
+  .top-bar {
+    @include top-app-bar.fill-color(material-color.$indigo-700);
+  }
+
+  .contents {
+    width: 100%;
+    height: calc(100% - 64px);
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    top: 64px;
+  }
+
+  .drawer {
+    height: calc(100% - 64px);
+    top: 64px;
+    position: fixed;
+  }
+
+  .app-contents {
+    left: 256px;
+    width: calc(100% - 256px);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-x: scroll;
+  }
+
+  .logo {
+    height: 40px;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+}

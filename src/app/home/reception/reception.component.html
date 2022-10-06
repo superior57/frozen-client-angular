@@ -1,0 +1,73 @@
+
+<div mdcHeadline4 style="margin-left: 16px; margin-top: 16px;">{{ (department$ | async)?.label}}</div>
+
+<div class="menu-container">
+  <div class="row first">
+    <button
+      mdc-button unelevated
+      (click)="onNewConsultationClick()"
+      *ngIf="userModel.userHasNotRoles(['partenaire']) | async"
+      class="first accent"
+    >
+      <mdc-icon>list</mdc-icon>Nouvelle consultation
+    </button>
+  </div>
+
+  <div class="row">
+    <button
+      mdc-button unelevated
+      (click)="onPatientListClick()"
+      *ngIf="userModel.userHasNotRoles(['partenaire']) | async"
+      class="first"
+    >
+      <mdc-icon>list</mdc-icon>Liste de patients
+    </button>
+
+    <button
+      mdc-button unelevated
+      (click)="onNewPatientClick()"
+      *ngIf="userHasRequiredPermissions() | async"
+      class="middle"
+    >
+      <mdc-icon>person_add</mdc-icon>Ajouter un patient
+    </button>
+
+    <button
+      mdc-button unelevated
+      (click)="onNewQuoteClick(true)"
+      *ngIf="isRecommandedEnabled() | async"
+      class="middle"
+    >
+      <mdc-icon>face</mdc-icon>Patient Recommandé
+    </button>
+
+    <button
+      mdc-button raised
+      (click)="onNewQuoteClick()"
+      *ngIf="userHasRequiredPermissions() | async"
+      class="middle secondary"
+    >
+      <mdc-icon>payment</mdc-icon>Créer facture
+    </button>
+    
+    <button
+      mdc-button unelevated
+      (click)="onNewBillClick()"
+      *ngIf="userHasRequiredPermissions() | async"
+      class="middle"
+    >
+      <mdc-icon>shopping_bag</mdc-icon>Créer bon de sortie
+    </button>
+
+    <button
+      mdc-button unelevated
+      (click)="onViewQuotesListClick()"
+      *ngIf="(userHasRequiredPermissions() | async) === false"
+      class="middle"
+    >
+      <mdc-icon>remove_red_eye</mdc-icon>Voir factures
+    </button>
+  </div>
+</div>
+
+<app-latest-data></app-latest-data>

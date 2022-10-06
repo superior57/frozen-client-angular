@@ -1,0 +1,138 @@
+<span class="mat-title">Créer un utilisateur</span>
+
+<form 
+  novalidate
+  #userForm="ngForm"
+  (ngSubmit)="createUser(userForm)"
+  >
+  <mat-form-field appearance="outline">
+    <mat-label>Nom</mat-label>
+    <input
+      matInput
+      required
+      type="text"
+      #nom="ngModel"
+      [(ngModel)]="user.nom"
+      name="nom"
+    />
+    <mat-error *ngIf="nom.errors?.required">
+      Le nom est obligatoire
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Prénom</mat-label>
+    <input
+      matInput
+      type="text"
+      required
+      [(ngModel)]="user.prenom"
+      name="prenom"
+      #prenom="ngModel"
+    />
+    <mat-error *ngIf="prenom.errors?.required">
+      Le prénom est obligatoire
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Nom d'utilisateur</mat-label>
+    <input
+      matInput
+      type="text"
+      required
+      [(ngModel)]="user.identifiant"
+      name="identifiant"
+      #nomUtilisateur="ngModel"
+    />
+    <mat-error *ngIf="nomUtilisateur.errors?.required">
+      Le nom d'utilisateur est obligatoire
+    </mat-error>
+  </mat-form-field>
+
+  <div clas="passwords">
+    <mat-form-field appearance="outline">
+      <mat-label>Mot de passe</mat-label>
+      <input
+        matInput
+        type="password"
+        required
+        minlength="6"
+        [(ngModel)]="password"
+        name="password"
+        #pwd="ngModel"
+      />
+      <mat-error *ngIf="pwd.errors?.required">
+        Le mot de passe est obligatoire
+      </mat-error>
+      <mat-error *ngIf="pwd.errors?.minlength">
+        Le mot de passe est trop court
+      </mat-error>
+      <mat-error *ngIf="passwordsNotMatching(pwd.value, pwdCheck.value)">
+        Les mot de passes ne correspondent pas
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Confirmer le mot de passe</mat-label>
+      <input
+        matInput
+        type="password"
+        required
+        [(ngModel)]="confirmPassword"
+        name="confirmPassword"
+        #pwdCheck="ngModel"
+      />
+      <mat-error *ngIf="pwdCheck.errors?.required">
+        Répetez le mot de passe
+      </mat-error>
+      <mat-error *ngIf="passwordsNotMatching(pwd.value, pwdCheck.value)">
+        Les mot de passes ne correspondent pas
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="roles">
+    <mat-form-field appearance="outline">
+      <mat-label>Département</mat-label>
+      <mat-select #dep value="Mensuel" name="departement" [(ngModel)]="selectedReception" required>
+        <mat-option *ngFor="let reception of receptions$ | async" [value]="reception">{{ reception.description }}</mat-option>
+      </mat-select>
+      <mat-hint>Assiger à un département</mat-hint>
+      <mat-error *ngIf="dep.errors?.required">Le département est obligatoire</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Niveau d'accès</mat-label>
+      <mat-select #role value="Mensuel" name="departement" required>
+        <mat-option *ngFor="let role of roles" [value]="role">{{ role }}</mat-option>
+      </mat-select>
+      <mat-hint>Assigner un privilège</mat-hint>
+      <mat-error *ngIf="role.errors?.required">Le niveau d'accèes est obligatoire</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="actions">
+    <span class="flex-expand"></span>
+    <button
+      mdc-button unelevated
+      class="button-secondary"
+      (click)="dismiss(userForm)"
+      matTooltip="Annuler"
+      arial-label="Annuler"
+      style="margin-right: 16px;"
+    >
+      Annuler
+    </button>
+
+    <button
+      type="submit"
+      (click)="createUser(userForm)"
+      mdc-button raised class="button-primary"
+      matTooltip="Sauvegarder"
+      arial-label="Sauvegarder"
+    >
+      <span>Valider</span>
+    </button>
+  </div>
+</form>

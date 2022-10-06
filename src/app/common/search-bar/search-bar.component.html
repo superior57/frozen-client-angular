@@ -1,0 +1,10 @@
+<div class="search-input">
+  <mat-icon>search</mat-icon>
+  <input
+    #search
+    placeholder="Rechercher"
+    class="search"
+    type="text"
+    (input)="onKeypress(search.value)"
+  >
+</div>

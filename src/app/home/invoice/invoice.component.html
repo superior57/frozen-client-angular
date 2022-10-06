@@ -1,0 +1,87 @@
+<form *ngIf="quoteMode$ | async" novalidate #form="ngForm" (submit)="submitQuote(form)">
+  
+  <div mdcHeadline4 *ngIf="quoteMode$ | async">{{ invoice.gratuit ? "Nouvelle facture pour patient recommandé" : "Nouvelle facture" }}</div>
+
+  <div class="invoice-controls" layout="column">
+    <div>
+      <div mdcHeadline5 style="margin-left: 16px; margin-top: 16px;">1. Patient</div>
+      <mat-form-field>
+        <mat-label>Prenom</mat-label>
+        <input matInput name="nom" [value]="invoice.client?.nom" [disabled]="true">
+      </mat-form-field>
+
+      <mat-form-field class="middle">
+        <mat-label>Nom</mat-label>
+        <input matInput name="prenom" [value]="invoice.client?.prenom" [disabled]="true">
+      </mat-form-field>
+
+      <mat-form-field class="last">
+        <mat-label>Post-nom</mat-label>
+        <input matInput name="postnom" [value]="invoice.client?.postnom" [disabled]="true">
+      </mat-form-field>
+
+      <button mdc-button raised (click)="onPatientAdd()"><mdc-icon>person_add</mdc-icon>Choisir patient</button>
+    </div>
+
+    <div>
+      <mat-form-field flex>
+        <mat-label>Recommandé par</mat-label>
+        <input matInput name="recommandationOrigin" [value]="invoice.recommandePar?.postnom" [disabled]="!invoice.gratuit"/>
+      </mat-form-field>
+      <button mdc-button raised (click)="onAgentAdd()" style="margin-left: 16px"><mdc-icon>person_add</mdc-icon>Choisir un agent</button>
+    </div>
+
+    <div mdcHeadline5 style="margin-left: 16px; margin-top: 16px;">2. Services</div>
+    <div class="actions" layout="row">
+      <button flex mdc-button raised (click)="addProductOrService()">
+        <mdc-icon>add</mdc-icon>Ajouter service
+      </button>
+      <button flex mdc-button unelevated [disabled]="canDisplayInvoicePreviewButton()" (click)="openInvoicePreview()" style="margin-left: 16px">
+        <mdc-icon>remove_red_eye</mdc-icon>Aperçu avant impression
+      </button>
+    </div>
+
+    <ag-grid-angular
+      class="ag-theme-alpine"
+      [rowData]="ecritures"
+      [gridOptions]="gridOptions"
+      (gridReady)="onGridReady($event)">
+    </ag-grid-angular>
+    
+    <div>
+      <button mdc-button raised class="secondary" type="submit" style="margin-top: 16px;">
+        <mdc-icon>check</mdc-icon>
+        <span>Valider la facture</span>
+      </button>
+    </div>
+  </div>
+</form>
+
+<form *ngIf="(quoteMode$ | async) === false" novalidate style="margin-bottom: 16px;" #form="ngForm" (submit)="submitQuote(form)">
+  <div mdcHeadline4 *ngIf="(quoteMode$ | async) === false" style="margin-bottom: 20px">Nouveau bon de sortie</div>
+
+  <div class="invoice-controls">
+    <div class="actions">
+      <button mdc-button raised (click)="onAddNewBillLine()">
+        <mdc-icon>add</mdc-icon>
+        <span>Ajouter une ligne</span>
+      </button>
+      <button mdc-button unelevated (click)="openInvoicePreview()" style="margin-left: 16px">
+        <mdc-icon>remove_red_eye</mdc-icon>
+        <span>Aperçu avant impression</span>
+      </button>
+    </div>
+
+    <ag-grid-angular
+      class="ag-theme-alpine"
+      [rowData]="ecritures"
+      [gridOptions]="gridOptions"
+      (gridReady)="onGridReady($event)">
+    </ag-grid-angular>
+    
+    <button mdc-button raised  class="secondary" type="submit" style="margin-top: 16px">
+      <mdc-icon>check</mdc-icon>
+      <span>Valider le bon</span>
+    </button>
+  </div>
+</form>

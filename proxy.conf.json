@@ -1,0 +1,7 @@
+{
+  "/auth/login": {
+    "target": "http://localhost:8086",
+    "secure": false,
+    "changeOrigin": true
+  }
+}

@@ -1,0 +1,6 @@
+<mat-form-field appearance="outline">
+  <mat-label>Libelé</mat-label>
+  <mat-select name="libelé" [(ngModel)]="libele" required>
+    <mat-option *ngFor="let dep of departements$ | async" [value]="getDepartementOption(dep)">{{ getDepartementOption(dep) }}</mat-option>
+  </mat-select>
+</mat-form-field>

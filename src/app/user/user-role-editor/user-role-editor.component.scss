@@ -1,0 +1,15 @@
+:host {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  
+  mat-checkbox {
+    margin-right: 8px;
+  }
+
+  button {
+    margin-bottom: 16px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

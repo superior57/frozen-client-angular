@@ -1,0 +1,10 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  
+  ag-grid-angular {
+    height:400px;
+    width: 100%;
+  }
+}

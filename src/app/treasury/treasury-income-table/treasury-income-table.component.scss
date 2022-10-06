@@ -1,0 +1,16 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: fit-content;
+
+  .header {
+    display: flex;
+    flex-direction: row;
+  }
+
+  ag-grid-angular {
+    height:400px;
+    width: 100%;
+  }
+}

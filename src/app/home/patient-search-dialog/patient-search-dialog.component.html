@@ -1,0 +1,36 @@
+<form #form="ngForm">
+  <div mdcHeadline5>{{ data.entity === "patient" ? "Rechercher un patient" : "Rechercher un agent" }}</div>
+
+  <div class="search-controls">
+    <mat-form-field appearance="outline">
+      <mat-label>Nom</mat-label>
+      <input matInput #nom type="text" name="nom_">
+    </mat-form-field>
+
+    <mat-form-field class="middle" appearance="outline">
+      <mat-label>Post-nom</mat-label>
+      <input matInput #postnom type="text" name="postnom_">
+    </mat-form-field>
+
+    <mat-form-field class="last" appearance="outline">
+      <mat-label>Prenom</mat-label>
+      <input matInput #prenom type="text" name="prenom_">
+    </mat-form-field>
+
+    <button mdc-button unelevated color="primary" (click)="onSearchClick()"><mat-icon>search</mat-icon>Rechercher</button>
+  </div>
+
+  <mdc-list-group [subheader]="getListHeaderText()" class="data-list">
+    <mdc-list twoLine avatar class="demo-list--custom">
+      <mdc-list-item (click)="setSelectedPatient(patient)" *ngFor="let patient of entities$ | async">
+        <mdc-icon mdcListItemGraphic>face</mdc-icon>
+        <mdc-list-item-text [secondaryText]="patient.date">{{ getPatientFullName(patient) }}</mdc-list-item-text>
+        <a mdcListItemMeta mdcIcon aria-label="View more" title="More info">info</a>
+      </mdc-list-item>
+    </mdc-list>
+  </mdc-list-group>
+
+  <div class="actions-container">
+    <button mdc-button class="button-primary" style="margin-right: 16px" (click)="close()">Annuler</button>
+  </div>
+</form>

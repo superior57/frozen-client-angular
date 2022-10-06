@@ -1,0 +1,24 @@
+:host { 
+  width: 100px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  margin-left: 16px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 8px;
+  color: #555;
+
+  &:hover{
+    background-color: #1abc9c;
+    color: #fff;
+  }
+  
+  img {
+    margin-left: 36px;
+    margin-top: 16px;
+    width: 128px;
+    display: inline-block;
+  }
+}

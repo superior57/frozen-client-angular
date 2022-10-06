@@ -1,0 +1,14 @@
+<app-treasury-entry-form></app-treasury-entry-form>
+
+<div class="header">
+  <span class="mat-title">Entrées trésorerie</span>
+</div>
+
+<ag-grid-angular
+  [rowData]="ecritures$ | async"
+  class="ag-theme-alpine"
+  [pagination]="true"
+  [gridOptions]="gridOptions$ | async"
+  (gridReady)="onGridReady($event)"
+  (cellValueChanged)="onCellValueChanged($event)">
+</ag-grid-angular>

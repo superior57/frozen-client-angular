@@ -1,0 +1,21 @@
+<div class="content" *ngIf="false">
+  <mdc-list-group subheader="Récentes factures" class="data-list">
+    <mdc-list twoLine avatar class="demo-list--custom">
+      <mdc-list-item *ngFor="let quote of quotes$ | async">
+        <mdc-icon mdcListItemGraphic>payment</mdc-icon>
+        <mdc-list-item-text [secondaryText]="getQuoteTotal(quote)">{{ getPatientFullName(quote.client) }}</mdc-list-item-text>
+        <a (click)="onQuotePreview(quote)" mdcListItemMeta mdcIcon aria-label="View more" title="More info">info</a>
+      </mdc-list-item>
+      <mdc-list-divider inset></mdc-list-divider>
+      <h3 mdcListGroupSubheader>Récents patients</h3>
+      <mdc-list-item *ngFor="let quote of quotes$ | async">
+        <mdc-icon mdcListItemGraphic>face</mdc-icon>
+        <mdc-list-item-text [secondaryText]="quote.date">{{ getPatientFullName(quote.client) }}</mdc-list-item-text>
+        <a (click)="onPatientPreview(quote.client)" mdcListItemMeta mdcIcon aria-label="View more" title="More info">info</a>
+      </mdc-list-item>
+    </mdc-list>
+  </mdc-list-group>
+
+</div>
+
+<app-account-log-all></app-account-log-all>

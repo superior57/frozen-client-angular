@@ -1,0 +1,14 @@
+<div class="header">
+  <button mdc-button unelevated class="button-primary" (click)="onCreateUser()" class="add-user"><mdc-icon>person_add</mdc-icon>Créer un utilisateur</button>
+  <span class="flex-expand"></span>
+</div>
+
+<ag-grid-angular
+  (gridReady)="onGridReady($event)"
+  (cellValueChanged)="onCellValueChanged($event)"
+  [rowData]="users$ | async | search:{nom: searchedUserName}"
+  [pagination]="true"
+  class="ag-theme-alpine"
+  [gridOptions]="gridOptions$ | async"
+>
+</ag-grid-angular>

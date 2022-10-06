@@ -1,0 +1,13 @@
+* {
+  display: hidden;
+}
+
+html, body {
+  display: block;
+}
+
+.invoice-preview {
+  display: flex;
+  width: 100%;
+  height: auto;
+}

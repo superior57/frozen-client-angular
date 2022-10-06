@@ -1,0 +1,32 @@
+<div class="image">
+</div>
+
+<div class="content mat-elevation-z16">
+  <div class="logo">
+    <img src="assets/images/logo.png">
+    <div class="text">
+      <span class="line">SERVICE DE SANTE</span>
+      <span class="slogan">POLICE NATIONALE CONGOLAISE</span>
+    </div>
+  </div>
+
+  <span class="mat-title">Connectez-vous</span>
+
+  <mat-error *ngIf="loginFailure">Nom d'utilisateur ou mot de passe incorrect</mat-error>
+
+  <form (submit)="login(username.value, password.value)">
+    <mat-form-field appearance="outline">
+      <mat-label>Nom d'utilisateur</mat-label>
+      <input matInput type="text" name="nomUtilisateur" #username required />
+      <mat-error *ngIf="username.errors?.required">Nom d'utilisateur obligatoire</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Mot de passe</mat-label>
+      <input matInput type="password" name="password" #password required/>
+      <mat-error *ngIf="password.errors?.required">Mot de passe obligatoire</mat-error>
+    </mat-form-field>
+
+    <button mdc-button unelevated class="button-primary" type="submit">Se connecter</button>
+  </form>
+</div>

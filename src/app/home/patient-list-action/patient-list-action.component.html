@@ -1,0 +1,11 @@
+<button
+  [disabled]="!valueChanged"
+  mdc-button
+  raised
+  class="button-primary"
+  (click)="onSavePatient()"
+  style="margin-right: 16px"
+  >
+  Enregistrer
+</button>
+<button mdc-button unelevated class="button-secondary" (click)="onMakeInvoiceClick()">Facturer</button>

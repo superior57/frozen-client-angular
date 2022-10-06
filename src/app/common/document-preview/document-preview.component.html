@@ -1,0 +1,53 @@
+<span class="mat-headline">Aperçu avant impression</span>
+<div #preview class="invoice-preview">
+  <div class="preview-header">
+    <span>HOPITAL CENTRAL DE REFERENCE DE LA POLICE</span>
+    <span><b>HRPC</b></span>
+    <span><b>{{ (document$ | async)?.departementOrigine?.label }}</b></span>
+    <span class="vseparator"></span>
+    <div class="preview-header-patient" *ngIf="(document$ | async)?.type === 'FACTURE'">
+      <span>PATIENT: {{ getPatientFullName() | async }}</span>
+      <span class="flex-expand"></span>
+      <span>N°{{ (document$ | async)?.client?.id }}</span>
+    </div>
+    <span class="invoice-id">{{ (document$ | async)?.type }} N°: {{ (document$ | async)?.id }}</span>
+  </div>
+
+  <table>
+    <thead>
+      <tr class="table-header">
+        <th>{{ (document$ | async)?.type === "BON" ? "Libele" : "Service" }}</th>
+        <th class="last-cell">Prix</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ligne of getDocumentLignes() | async">
+        <td>{{ ligne.libele }}</td>
+        <td class="last-cell">{{ getLigneMontant(ligne) | currency }}</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td>Total</td>
+        <td class="last-cell">{{ getDocumentTotal() | async | currency }}</td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <div class="span">
+    <span><b>{{ (document$ | async)?.type === "BON" ? "Émis par" : "Percepteur" }}</b>: {{ getUserFullName() | async }}</span>
+    <span class="flex-expand"></span>    
+    <span class="invoice-date">Emit Le {{ (document$ | async)?.date | date }}</span>
+  </div>
+  <span class="vseparator"></span>
+  <span>1$ = {{ getCurrentExchangeRateValue() }} FC, <b>Taux du jour</b></span>
+  <span><b>Cash en CDF</b>: {{ getInvoiceValueAsCDF() | async }} Fc</span>
+  <span class="address">Croissement des avenues Huiléries et Itaga Camp Lufungula - Commune de Lingwala</span>
+  <span><b>Téléphone: +243 853 491 681</b></span>
+</div>
+
+<div class="actions">
+  <span class="flex-expand"></span>
+  <button mdc-button unelevated class="button-secondary" style="margin-right: 16px;" (click)="close()">Fermer</button>
+  <button mdc-button raised class="button-primary" (click)="printInvoice(preview)"><mat-icon>printer</mat-icon>Imprimer</button>
+</div>

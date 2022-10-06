@@ -1,0 +1,30 @@
+<span class="mat-title">Service demandé</span>
+
+<form novalidate #form="ngForm" (submit)="submitEntry(form)">
+  <mat-form-field class="full-width" appearance="outline">
+    <mat-label>Service</mat-label>
+    <input matInput name="designation" type="text" [(ngModel)]="ecriture.libele" required>
+  </mat-form-field>
+
+  <br>
+  <mat-form-field appearance="outline" style="margin-right: 16px">
+    <mat-label>Devise</mat-label>
+    <mat-select #deviseEcriture name="devise" [(ngModel)]="ecriture.devise" required>
+      <mat-option value="USD">USD</mat-option>
+      <mat-option value="CDF">CDF</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field style="margin-right: 16px;" appearance="outline">
+    <mat-label>Prix</mat-label>
+    <input matInput name="prixUnitaire" type="number" [(ngModel)]="ecriture.montant" required>
+  </mat-form-field>
+  
+  <br>
+  <div class="actions">
+    <span class="flex-expand"></span>
+    <button mdc-button raised class="button-primary" style="margin-right: 16px" type="submit">{{ isEditMode? "Enregistrer" : "Ajouter" }}</button>
+    <button mdc-button unelevated class="button-secondary" (click)="onCancel()">Annuler</button>
+  </div>
+  <br>
+</form>

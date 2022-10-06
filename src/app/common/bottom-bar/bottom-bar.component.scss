@@ -1,0 +1,52 @@
+:host {
+  z-index: 700;
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  bottom:0;
+  left: 0;
+  right: 0;
+  width: auto;
+  height: fit-content;
+
+  background: #fff;
+
+  .menu-container {
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+  }
+
+  .bottom-icon {
+    display: flex;
+    margin: 16px;
+    flex-direction: column;
+    width: fit-content;
+    height: fit-content;
+    text-align: center;
+    font-weight: 600;
+    cursor: pointer;
+    
+
+    &.selected {
+      border-bottom: solid 4px #e91e63;
+      padding-bottom: 8px;
+      margin-bottom: 4px;
+    }
+
+    &:visited {
+      text-decoration: none;
+      color: #000;  
+    }
+
+    text-decoration: none;
+
+    img {
+      margin-left: auto;
+      margin-right: auto;
+      width: 48px;
+      margin-bottom: 4px;
+    }
+  }
+}

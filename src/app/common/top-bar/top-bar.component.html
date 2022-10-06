@@ -1,0 +1,67 @@
+<mdc-top-app-bar class="top-bar">
+  <mdc-top-app-bar-row>
+    <mdc-top-app-bar-section align="start" title="Service Santé PNC">
+    </mdc-top-app-bar-section>
+    <mdc-top-app-bar-section align="end">
+      <mdc-icon mdcTopAppBarActionItem (click)="profileMenu.open = !profileMenu.open">person</mdc-icon>
+      <div mdcMenuSurfaceAnchor #menuAnchor>
+        <mdc-menu #profileMenu [anchorElement]="menuAnchor">
+          <mdc-list>
+            <mdc-list-item>Paramètres</mdc-list-item>
+            <mdc-list-divider></mdc-list-divider>
+            <mdc-list-item (click)="logoutUser()">Se déconnecter</mdc-list-item>
+          </mdc-list>
+        </mdc-menu>
+      </div>
+    </mdc-top-app-bar-section>
+  </mdc-top-app-bar-row>
+  <mdc-top-app-bar-row>
+    <mdc-top-app-bar-section>
+      <mdc-tab-bar>
+        <mdc-tab-scroller>
+          <mdc-tab routerLink="/acceuil" label="Acceuil" icon="home"></mdc-tab>
+          <mdc-tab routerLink="/utilisateurs" *ngIf="userModel.userHasRoles(['admin']) | async" label="Utilisateurs" icon="person"></mdc-tab>
+          <mdc-tab routerLink="/finances" *ngIf="userModel.userHasRoles(['admin', 'tresorerier', 'gen:01', 'gen:02', 'chef-departement']) | async" label="Caisse" icon="store"></mdc-tab>
+          <mdc-tab routerLink="/tresorerie" *ngIf="userModel.userHasRoles(['admin', 'tresorerier', 'gen:01', 'gen:02', 'chef-departement']) | async" label="Trésorerie" icon="dollar_sign"></mdc-tab>
+        </mdc-tab-scroller>
+      </mdc-tab-bar>
+    </mdc-top-app-bar-section>
+  </mdc-top-app-bar-row>
+</mdc-top-app-bar>
+<!--
+<div
+  class="navigation-icon"
+  aria-label="Retourner à l'écran précédent"
+  matTooltip="Retourner à l'écran précédent"
+  *ngIf="menuModel.hasNavigationHistory()"
+  (click)="menuModel.navigateBack()"
+>
+  <img src="assets/images/icons8-back-50.png">
+</div>
+<div class="logo" *ngIf="shouldDisplayLogo$ | async">
+  <img src="assets/images/ok.png">
+</div>
+
+<span class="flex-expand"></span>
+
+<ng-container *ngIf="menuModel.shouldDisplayReceptionMenu$ | async">
+  <button
+    mat-flat-button
+    [matMenuTriggerFor]="menu"
+    color="primary"
+    aria-label="Séléctionner la réception" matTooltip="Sélectionner la réception"
+  >
+    {{ (receptionModel.activeReception$ | async)?.intitule || "Réception" }}
+    <mat-icon>arrow_drop_down</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button
+      mat-menu-item
+      *ngFor="let reception of receptions$ | async"
+      (click)="setSelectedReception(reception)"
+    >
+      {{ reception.description }}
+    </button>
+  </mat-menu>
+</ng-container>
+-->

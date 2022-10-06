@@ -1,0 +1,33 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+  width: 100%;
+
+ .header {
+   margin-top: 16px;
+   display: flex;
+   flex-direction: row;
+
+   button {
+     margin-right: 16px;
+   }
+
+   .recalculate {
+    width: fit-content;
+    height: fit-content;
+   }
+ }
+
+ app-department-list {
+   margin-right: 16px;
+ }
+
+ ag-grid-angular {
+   height: 400px;
+ }
+
+ app-free-entries-list {
+   margin-top: 16px;
+ }
+}

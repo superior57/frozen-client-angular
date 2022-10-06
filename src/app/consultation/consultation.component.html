@@ -1,0 +1,104 @@
+<div mdcHeadline4 style="margin-left: 16px; margin-top: 16px;">Consultations</div>
+
+<mat-vertical-stepper #stepper>
+  <mat-step [stepControl]="patientFormGroup">
+    <form [formGroup]="patientFormGroup">
+      <ng-template matStepLabel>Patient</ng-template>
+      <div class="patient-controls-container">
+        <mat-form-field>
+          <mat-label>Prenom</mat-label>
+          <input matInput name="nom" [value]="consultations.active$.value.Patient?.nom" [disabled]="true">
+        </mat-form-field>
+    
+        <mat-form-field class="middle">
+          <mat-label>Nom</mat-label>
+          <input matInput name="prenom" [value]="consultations.active$.value.Patient?.prenom" [disabled]="true">
+        </mat-form-field>
+    
+        <mat-form-field class="middle">
+          <mat-label>Post-nom</mat-label>
+          <input matInput name="postnom" [value]="consultations.active$.value.Patient?.postnom" [disabled]="true">
+        </mat-form-field>
+
+        <input type="hidden" name="patientId" id="patientId" [value]="consultations.active$.value.patient">
+    
+        <button mdc-button unelevated (click)="onPatientAdd()"><mdc-icon>person_add</mdc-icon>Choisir patient</button>
+      </div>
+    </form>
+
+    <div>
+      <button mat-button matStepperNext (click)="onSendToNursingClick()">Envoyer au nursing</button>
+    </div>
+  </mat-step>
+
+  <mat-step [stepControl]="nursingFormGroup">
+    <form [formGroup]="nursingFormGroup">
+      <ng-template matStepLabel>Nursing</ng-template>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Poids</mat-label>
+        <input matInput type="number" name="poids" [value]="consultations.active$.value.SignesVitaux.poids">
+      </mat-form-field>
+    
+      <mat-form-field appearance="outline">
+        <mat-label>Symptomes</mat-label>
+        <textarea matInput name="symptomes" [value]="consultations.active$.value.SignesVitaux.symptomes"></textarea>
+      </mat-form-field>
+
+      <div mdcHeadline7 style="margin-left: 16px; margin-top: 16px;">Tension</div>
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>Diastolique</mat-label>
+          <input matInput type="number" name="diastolique" [value]="diastolique">
+        </mat-form-field>
+        /
+        <mat-form-field appearance="outline">
+          <mat-label>Systolique</mat-label>
+          <input matInput type="number" name="systolique" [value]="systolique">
+        </mat-form-field>
+      </div>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Température</mat-label>
+        <input matInput type="number" name="temperatoure" [value]="consultations.active$.value.SignesVitaux.temperature">
+      </mat-form-field>
+    
+      <mat-form-field appearance="outline">
+        <mat-label>imc</mat-label>
+        <input matInput name="imc" [value]="consultations.active$.value.SignesVitaux.imc">
+      </mat-form-field>
+    </form>
+
+    <div>
+      <button mat-button matStepperPrevious>Renvoyer à la réception</button>
+      <button mat-button matStepperNext (click)="onSendToConsultationClick()">Envoyer à la consultation</button>
+    </div>
+  </mat-step>
+
+  <mat-step [stepControl]="consultationFormGroup">
+    <form [formGroup]="consultationFormGroup" class="consultation-form">
+      <ng-template matStepLabel>Consultation</ng-template>
+      
+      <p mdcBody>Insérez toutes vos notes de consultations dans la case appropriée. Vous pouvez aussi demander des examens, faire des prescriptions ou établir un diagonstic en cliquant sur le boutton approprié.</p>
+
+      <div class="consultation-controls-container">
+        <mat-form-field class="notes-area" appearance="outline">
+          <mat-label>Notes de consultation</mat-label>
+          <textarea matInput name="notes" [value]="consultations.active$.value.notes"></textarea>
+          <mat-hint>Insérez toutes vos notes de consultations.active$.value. Ne pas oublier que d'autres pourraient les lire ultérieuement.</mat-hint>
+        </mat-form-field>
+  
+        <div class="flight-board">
+          <button mdc-button unelevated color="primary" (click)="onAddPrescriptionClick()"><mat-icon>add</mat-icon>Prescription</button>
+          <button class="middle" mdc-button unelevated color="primary" (click)="onButtonClick()"><mat-icon>add</mat-icon>Examens</button>
+          <button class="middle" mdc-button unelevated color="primary" (click)="onButtonClick()"><mat-icon>add</mat-icon>Diagnostic</button>
+        </div>
+      </div>
+    </form>
+
+    <div>
+      <button mat-button matStepperNext>Transférer</button>
+      <button mat-button matStepperNext>Clôturer</button>
+    </div>
+  </mat-step>
+</mat-vertical-stepper>

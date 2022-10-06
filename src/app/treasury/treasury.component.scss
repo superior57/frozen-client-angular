@@ -1,0 +1,34 @@
+@use '@material/button';
+@use '@material/ripple/_index' as ripple;
+@use '@material/theme';
+@use '@material/theme/color-palette' as material-color;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+
+  app-period-selector {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  mat-tab-group {
+    width: calc(100% - 32px);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .actions {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: row;
+  }
+
+  button.secondary {
+    @include button.filled-accessible(material-color.$amber-700);
+  }
+}

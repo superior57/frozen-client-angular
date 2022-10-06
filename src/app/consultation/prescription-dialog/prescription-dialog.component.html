@@ -1,0 +1,28 @@
+<span mdcHeadline4 mat-dialog-title>Nouvelle prescription</span>
+
+<mat-dialog-content class="mdc-typography">
+  <ng-template *ngFor="let line of lines | arrayChangesDetector">
+    
+  </ng-template>
+  <form novalidate #form="ngForm" (submit)="onFormSubmit(form)">
+    <mat-form-field appearance="outline">
+      <mat-label>imc</mat-label>
+      <input matInput name="imc" [value]="line?.medicament" required>
+    </mat-form-field>
+    <mat-form-field class="middle" appearance="outline">
+      <mat-label>imc</mat-label>
+      <input matInput name="imc" [value]="line?.dosage" required>
+    </mat-form-field>
+    <mat-form-field class="middle last" appearance="outline">
+      <mat-label>imc</mat-label>
+      <input matInput name="imc" [value]="line?.duree" required>
+    </mat-form-field>
+
+    <button mdc-button unelevated class="primary"><mdc-icon>add</mdc-icon>Ajouter</button>
+  </form>
+</mat-dialog-content>
+  
+<mat-dialog-actions align="end">
+  <button class="cancel" mdc-button unelevated mat-dialog-close>Annuler</button>
+  <button mdc-button unelevated [mat-dialog-close]="true">Enregistrer</button>
+</mat-dialog-actions>

@@ -1,0 +1,4 @@
+<ng-container *ngIf="!node.isRowPinned()">
+  <button [disabled]="!valueChanged" mdc-button raised class="button-primary" style="margin-right : 16px;" (click)="onSaveEcriture()"><mdc-icon>save</mdc-icon>Enregistrer</button>
+  <button *ngIf="isDeletable$ | async" mdc-button raised class="button-warn" (click)="onDeleteEcriture()"><mdc-icon>delete</mdc-icon>Supprimer</button>
+</ng-container>

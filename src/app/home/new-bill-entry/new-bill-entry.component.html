@@ -1,0 +1,47 @@
+<span class="mat-title">Nouvelle dépense</span>
+<form novalidate #form="ngForm" (submit)="onAdd(form)">
+  <mat-form-field appearance="outline">
+    <mat-label>Raison</mat-label>
+    <input matInput type="text" #reason required [(ngModel)]="ecriture.libele" name="libele">
+    <mat-hint>La raison de la dépense</mat-hint>
+    <mat-error *ngIf="reason.errors?.required">La raison de la dépense est obligatoire</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Détails</mat-label>
+    <textarea matInput [(ngModel)]="ecriture.description" name="description">
+    </textarea>
+    <mat-hint>Détais de la dépense</mat-hint>
+  </mat-form-field>
+
+  <div class="amount">
+    <mat-form-field appearance="outline" class="amount">
+      <mat-label>Montant</mat-label>
+      <input matInput type="number" #amount required [(ngModel)]="ecriture.montant" name="montant">
+      <mat-error *ngIf="amount.errors?.required">Le montant est obligatoire</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="currency">
+      <mat-label>Devise</mat-label>
+      <mat-select #currency name="devise" required [(ngModel)]="ecriture.devise">
+        <mat-option value="CDF">CDF</mat-option>
+        <mat-option value="USD">USD</mat-option>
+      </mat-select>
+      <mat-error *ngIf="currency.errors?.required">La devise est obligatoire</mat-error>
+    </mat-form-field>
+  </div>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Catégorie</mat-label>
+    <mat-select #account name="compte" required [(ngModel)]="ecriture.compte">
+      <mat-option [value]="compte" *ngFor="let compte of comptes$ | async">{{ compte.intitule }}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="account.errors?.required">Le compte de dépense est obligatoire</mat-error>
+  </mat-form-field>
+
+  <div class="actions">
+    <span class="flex-expand"></span>
+    <button mdc-button unelevated class="button-secondary" style="margin-right: 16px" (click)="onCancel()">Anuler</button>
+    <button type="submit" mdc-button raised class="button-primary">Ajouter</button>
+  </div>
+</form>

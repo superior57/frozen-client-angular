@@ -1,0 +1,16 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: fit-content;
+
+  .full-width {
+    width: 100%;
+  }
+
+  .actions {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+  }
+}

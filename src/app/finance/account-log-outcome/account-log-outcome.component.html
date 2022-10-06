@@ -1,0 +1,64 @@
+<span class="mat-title">Sorties</span>
+<table mat-table [dataSource]="outcomeDataSource$ | async">
+
+  <ng-container matColumnDef="approve">
+    <th mat-header-cell *matHeaderCellDef>Approuvé</th>
+    <td mat-cell *matCellDef="let entry" style="text-align: center;">
+      <mat-icon [color]="entry.approve ? 'primary' : 'warn'" style="font-size: 16px;">{{ getEntryApprovedIcon(entry) }}</mat-icon>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="designation">
+    <th mat-header-cell *matHeaderCellDef>Désignation</th>
+    <td mat-cell *matCellDef="let entry">{{ entry.designation | titlecase }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="quantite">
+    <th mat-header-cell *matHeaderCellDef>Quantité</th>
+    <td mat-cell *matCellDef="let entry">{{ entry.quantite }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="prixUnitaire">
+    <th mat-header-cell *matHeaderCellDef>Prix Unitaire</th>
+    <td
+      mat-cell
+      *matCellDef="let entry"
+      [class.positive-entry]="entry.type=='ENTREE'"
+      [class.negative-entry]="entry.type=='SORTIE'"
+    >
+      {{ entry.prixUnitaire | currency:entry.currency }}
+      <mat-icon class="income-direction">{{ entry.type=="ENTREE" ? "arrow_upward" : "arrow_downward" }}</mat-icon>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="prixTotal">
+    <th mat-header-cell *matHeaderCellDef>Prix total</th>
+    <td
+      mat-cell
+      *matCellDef="let entry"
+      [class.positive-entry]="entry.type=='ENTREE'"
+      [class.negative-entry]="entry.type=='SORTIE'"
+    >
+      {{ entry.prixTotal | currency:entry.currency }}
+      <mat-icon class="income-direction">{{ entry.type=="ENTREE" ? "arrow_upward" : "arrow_downward" }}</mat-icon>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="date">
+    <th mat-header-cell *matHeaderCellDef>Date</th>
+    <td mat-cell *matCellDef="let entry">{{ entry.date | date }}</td>
+  </ng-container>
+
+   <!-- Actions colupmn-->
+   <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef>Actions</th>
+    <td mat-cell *matCellDef="let data" class="actions">
+      <button mat-icon-button (click)="setUserUnderEdit(data)"><mat-icon color="primary">edit</mat-icon></button>
+      <button mat-icon-button (click)="deleteUser(data)"><mat-icon color="warn">delete</mat-icon></button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>

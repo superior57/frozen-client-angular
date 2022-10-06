@@ -1,0 +1,54 @@
+:host {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .charts {
+    display: flex;
+    width: fit-content;
+    height: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+
+    .row {
+      display: flex;
+      flex-direction: row;
+      height: fit-content;
+    }
+
+    .chart-container {
+      background-color: #fff;
+      margin-bottom: 16px;
+      padding: 16px;
+      width: fit-content;
+      height: fit-content;
+      border-radius: 16px;
+    }
+  }
+}
+
+@media (min-width: 1336px) {
+  :host {
+    .charts {
+      flex-direction: row;
+    } 
+  }
+}
+
+@media (max-width: 1336px) {
+  :host {
+    .charts {
+      flex-direction: column;
+      flex-wrap: wrap;
+    } 
+  }
+}
+
+@media (max-width: 1366px) {
+  :host {
+    .charts {
+      flex-direction: column;
+      flex-wrap: wrap;
+    } 
+  }
+}

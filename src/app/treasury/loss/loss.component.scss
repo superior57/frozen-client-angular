@@ -1,0 +1,10 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  
+  app-free-entries-list {
+    width: calc(100% - 32px);
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

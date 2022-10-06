@@ -1,0 +1,33 @@
+<app-period-selector [periodTypes]="['Mensuel', 'Journalier']"></app-period-selector>
+
+<mat-tab-group class="tab-group">
+  <mat-tab label="Entrées" *ngIf="userModel.userHasRoles(['admin', 'tresorerie', 'gen:01', 'gen:02']) | async">
+    <app-treasury-income-table></app-treasury-income-table>
+  </mat-tab>
+
+  <mat-tab label="Sorties" *ngIf="userModel.userHasRoles(['admin', 'tresorerie', 'gen:01', 'gen:02']) | async">
+    <div class="actions">
+      <button mdc-button raised style="margin-right: 16px" (click)="onNewBillClick()">
+        <mdc-icon>create</mdc-icon>
+        <span>Créer bon de sortie</span>
+      </button>
+      <button
+        mdc-button unelevated
+        class="secondary"
+        style="margin-right: 16px;"
+        (click)="onViewBillsClick()"
+        *ngIf="!hideDashBoard"
+      >
+        <mdc-icon>remove_red_eye</mdc-icon>
+        <span>Voir bons de sorties</span>
+      </button>
+    
+      <mat-slide-toggle [(ngModel)]="hideDashBoard">Masquer le tableau de bord</mat-slide-toggle>
+    </div>
+    <app-treasury-outcome-table [hideDashBoard]="hideDashBoard"></app-treasury-outcome-table>
+  </mat-tab>
+
+  <mat-tab label="Rapport Financier">
+    <app-treasury-report></app-treasury-report>
+  </mat-tab>
+</mat-tab-group>

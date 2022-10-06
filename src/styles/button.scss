@@ -1,0 +1,17 @@
+@use '@material/button/mdc-button';
+@use '@material/button';
+@use '@material/theme';
+@use '@material/ripple/_index' as ripple;
+@use '@material/theme/color-palette' as material-color;
+
+.button-primary {
+  @include button.filled-accessible(theme.$primary);
+}
+
+.button-secondary {
+  @include button.filled-accessible(material-color.$amber-700);
+}
+
+.button-warn {
+  @include button.filled-accessible(material-color.$red-700);
+}

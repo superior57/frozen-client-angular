@@ -1,0 +1,71 @@
+<div class="charts">
+  <div class="row">
+    <div class="chart-container mat-elevation-z8" style="margin-right: 16px; margin-left: 16px">
+      <span class="mat-title">Entrées par service</span>
+      <ngx-charts-line-chart
+        class="chart"
+        [view]="view"
+        [scheme]="colorScheme"
+        [legend]="legend"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [xAxis]="xAxis"
+        [yAxis]="yAxis"
+        [xAxisLabel]="xAxisLabel"
+        [yAxisLabel]="yAxisLabel"
+        [timeline]="timeline"
+        [results]="timeline$ | async"
+      >
+      </ngx-charts-line-chart>
+    </div>
+
+    <div class="chart-container mat-elevation-z8" style="margin-left: 16px">
+      <span class="mat-title">Parts par service</span>
+      <ngx-charts-pie-chart
+        class="chart"
+        [view]="view"
+        [results]="income$ | async"
+        [scheme]="colorScheme"
+        [animations]="true"
+        [labels]="true"
+        [legend]="true"
+      >
+      </ngx-charts-pie-chart>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="chart-container mat-elevation-z8" style="margin-left: 16px">
+      <span class="mat-title">Entrées VS Sorties</span>
+      <ngx-charts-line-chart
+        class="chart"
+        [view]="view"
+        [scheme]="colorScheme"
+        [legend]="legend"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [xAxis]="xAxis"
+        [yAxis]="yAxis"
+        xAxisLabel="Jour"
+        yAxisLabel="Montant"
+        [timeline]="timeline"
+        [results]="invsout$ | async"
+      >
+      </ngx-charts-line-chart>
+    </div>
+
+    <div class="chart-container mat-elevation-z8" style="margin-left: 16px">
+      <span class="mat-title">Entrées labo vs Manque à gagner</span>
+      <ngx-charts-pie-chart
+        class="chart"
+        [view]="view"
+        [results]="labovsloss$ | async"
+        [scheme]="colorScheme"
+        [animations]="true"
+        [labels]="true"
+        [legend]="true"
+      >
+      </ngx-charts-pie-chart>
+    </div>
+  </div>
+</div>

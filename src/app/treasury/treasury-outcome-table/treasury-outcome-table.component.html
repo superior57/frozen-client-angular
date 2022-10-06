@@ -1,0 +1,19 @@
+<ag-grid-angular
+  *ngIf="!hideDashBoard"
+  [rowData]="comptes$ | async"
+  class="ag-theme-alpine"
+  [pagination]="true"
+  [gridOptions]="gridOptions"
+  [columnDefs]="oColDefs$ | async">
+  
+</ag-grid-angular>
+
+
+<span class="mat-title">Liste de bons de sorties</span>
+<ag-grid-angular
+  [rowData]="bons$ | async"
+  class="ag-theme-alpine"
+  [pagination]="true"
+  [gridOptions]="gridOptions"
+  [columnDefs]="bColDefs">
+</ag-grid-angular>

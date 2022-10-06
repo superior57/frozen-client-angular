@@ -1,0 +1,11 @@
+<span class="mat-title">Manque à gagner</span>
+<ag-grid-angular
+  (gridReady)="onGridReady($event)"
+  [rowData]="ecritures$ | async"
+  [pagination]="true"
+  class="ag-theme-alpine"
+  [groupIncludeFooter]="true"
+  [defaultColDef]="defaultColDef"
+  [columnDefs]="colDefs"
+>
+</ag-grid-angular>

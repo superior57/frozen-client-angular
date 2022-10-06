@@ -1,0 +1,71 @@
+@use '@material/button';
+@use '@material/ripple/_index' as ripple;
+@use '@material/theme';
+@use '@material/theme/color-palette' as material-color;
+
+:host {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  width: 100%;
+  height: fit-content;
+
+  .menu-container {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    height: fit-content;
+
+    .row {
+      &.first {
+        margin-bottom: 16px;
+      }
+    }
+  }
+
+  button.middle {
+    margin-right: 16px;
+  }
+
+  button.first {
+    margin-right: 16px;
+  }
+
+  button.secondary {
+    @include button.filled-accessible(material-color.$amber-700);
+  }
+
+  app-facts {
+    margin-bottom: 56px;
+  }
+
+  app-invoice {
+    position: absolute;
+    top: 16px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 700px;
+    height: fit-content;
+    z-index: 700;
+    border-radius: 0 16px 16px 0;
+  }
+
+  .header {
+    width: fit-content;
+    height: fit-content;
+    border-radius: 24px;
+    background-color: #fff;
+    margin-left: 16px;
+  }
+
+  .action-text {
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 16px;
+  }
+}

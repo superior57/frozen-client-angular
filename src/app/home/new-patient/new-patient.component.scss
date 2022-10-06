@@ -1,0 +1,15 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+
+  form {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  mat-form-field {
+    width: 276px;
+    margin-right: 16px;
+  }
+}

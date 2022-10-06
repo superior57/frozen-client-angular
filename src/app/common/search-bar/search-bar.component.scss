@@ -1,0 +1,46 @@
+:host {
+
+  .search-input {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    color: #24495e;
+    width: 100%;
+    vertical-align: middle;
+
+    mat-icon {
+      position: absolute;
+      display: inline-block;
+      z-index: 500;
+      margin-left: 24px;
+      margin-top: 16px;
+    }
+
+    .search {
+      z-index: 499;
+      height: 48px;
+      width: 100%;
+  
+      border: none;
+      border-radius: 16px;
+      background-color: #b2bee3;
+
+      outline: none;
+      padding-left: 48px;
+      padding-right: 16px;
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .search {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+}
+
+
+@media (min-width: 900px) {
+  .search {
+  }
+}

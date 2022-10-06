@@ -1,0 +1,30 @@
+:host {
+  display: block;
+
+  mat-form-field {
+    width: 100%;
+  }
+
+  .dropdown-list {
+    margin-top: -16px;
+
+    width: 400px;
+    min-height: fit-content;
+    max-height: 250px;
+    background-color: #fff;
+    
+    position: fixed;
+    overflow: scroll;
+
+    z-index: 500;
+  }
+
+  .no-content {
+    display: block;
+    margin: 16px;
+  }
+
+  .mat-menu-panel {
+    max-height: 300px;
+  }
+}

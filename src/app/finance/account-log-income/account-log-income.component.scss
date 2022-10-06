@@ -1,0 +1,34 @@
+:host {
+  width: fit-content;
+
+  table {
+    td {
+      &.actions {
+        mat-icon {
+          font-size: 16px;
+        }
+      }
+
+      &.positive-entry {
+        color: #388e3c;
+      }
+
+      .income-direction {
+        font-size: 16px;
+      }
+    }
+  }
+
+  .grand-total {
+    display: block;
+    margin-left: auto;
+    margin-right: 0;
+    width: fit-content;
+    margin-right: 16px;;
+  }
+
+  .title {
+    margin-top: 16px;
+    margin-left: 16px;
+  }
+}

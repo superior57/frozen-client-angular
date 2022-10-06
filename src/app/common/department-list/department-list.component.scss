@@ -1,0 +1,12 @@
+@use '@material/button';
+@use '@material/ripple/_index' as ripple;
+@use '@material/theme';
+@use '@material/theme/color-palette' as material-color;
+
+:host {
+  display: block;
+
+  .mat-nav-list {
+    width: 224px;
+  }
+}

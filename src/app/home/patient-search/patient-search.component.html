@@ -1,0 +1,31 @@
+<form #patientForm="ngForm" (submit)="submit(patientForm)">
+  <mat-form-field class="full-width" appearance="outline">
+    <mat-label>Nom du patient</mat-label>
+    <input
+      #patient
+      matInput
+      type="search"
+      autocomplete="off"
+      [value]="getSelectedPatientFullName()"
+      [disabled]="disablePatientChange"
+      required
+      (keyup)="onPatientNameChange(patient.value)"
+      style="width: 100%"
+    >
+    <button #submitButton style="display: none" type="submit"></button>
+    <mat-hint>Rechercher un patient en entrant son nom</mat-hint>
+    <mat-error *ngIf="patient.errors?.required">Le nom du patient est obligatoire</mat-error>
+  </mat-form-field>
+</form>
+
+<div class="dropdown-list mat-elevation-z16" *ngIf="displayDropdown" (blur)="onBlur()" (mouseleave)="onBlur()">
+  <mat-nav-list *ngIf="(searchedPatients$ | async)?.length > 0">
+    <mat-list-item
+      *ngFor="let patient of searchedPatients$ | async"
+      (click)="setActivePatient(patient)"
+    >
+      {{ getPatientName(patient) }}
+    </mat-list-item>
+  </mat-nav-list>
+  <span *ngIf="(searchedPatients$ | async)?.length == 0" class="mat-body no-content">Aucun patient trouvé</span>
+</div>

@@ -1,0 +1,19 @@
+:host {
+  width: 100%;
+  height: fit-content;
+  flex-direction: column;
+  display: flex;
+  
+  .title {
+    margin-top: 16px;
+    margin-left: 16px;
+    margin-bottom: 64px;
+  }
+  
+  ag-grid-angular {
+    margin-left: 16px;
+    margin-right: 16px;
+    width: auto;
+    height: 400px;
+  }
+}

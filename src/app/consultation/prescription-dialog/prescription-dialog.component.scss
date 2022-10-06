@@ -1,0 +1,23 @@
+:host {
+  form {
+    mat-form-field {
+      &.middle {
+        margin-left: 16px;
+      }
+
+      &.last {
+        margin-right: 16px;
+      }
+    }
+  }
+
+  mat-dialog-actions {
+    button {
+      &.cancel {
+        background-color: #fff;
+        margin-right: 16px;
+        color: #19227c;
+      }
+    }
+  }
+}

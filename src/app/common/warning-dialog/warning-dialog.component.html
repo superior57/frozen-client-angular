@@ -1,0 +1,9 @@
+<div class="message">
+  <mat-icon color="warn">warning</mat-icon>
+  <span>{{ message }}</span>
+</div>
+<div class="actions">
+  <span class="flex-expand"></span>
+  <button mat-flat-button style="margin-right: 16px;" (click)="onCancel()">Annuler</button>
+  <button mat-flat-button color="warn" (click)="onConfirm()">Confirmer</button>
+</div>

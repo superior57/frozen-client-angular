@@ -1,0 +1,6 @@
+@use '@material/typography/mdc-typography';
+@use '@material/typography';
+
+p {
+  @extend .mdc-typography--body2
+}

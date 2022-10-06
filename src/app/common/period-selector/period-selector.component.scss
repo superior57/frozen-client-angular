@@ -1,0 +1,36 @@
+@use '@material/button';
+@use '@material/ripple/_index' as ripple;
+@use '@material/theme';
+@use '@material/theme/color-palette' as material-color;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  width: 100%;
+  background-color: material-color.$amber-300;
+  
+  .title {
+    margin-left: 16px;
+    margin-top: 16px;
+  }
+  
+  mat-form-field {
+    .mat-form-field-outline {
+      background-color: #fff;
+    }
+  }
+
+  form {
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    height: fit-content;
+    margin: 16px;
+  }
+
+  button {
+    margin-right: 16px;
+    margin-left: 16px;
+  }
+}

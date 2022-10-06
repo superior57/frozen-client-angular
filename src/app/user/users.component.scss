@@ -1,0 +1,13 @@
+:host {
+  display: flex;
+  flex-direction :column;
+  width: 100%;
+
+  .mat-headline {
+    margin-left: 16px;
+  }
+  
+  app-user-create {
+    margin-right: 16px;
+  }
+}

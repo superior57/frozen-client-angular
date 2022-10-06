@@ -1,0 +1,13 @@
+<button mdc-button raised [matMenuTriggerFor]="menu" class="button-primary">
+  {{ (departmentModel.selected$ | async)?.label || "Département" }}
+  <mat-icon>arrow_drop_down</mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+  <button
+    mat-menu-item
+    *ngFor="let dep of departments$ | async"
+    (click)="setSelectedDepartment(dep)"
+  >
+    {{ dep.label }}
+  </button>
+</mat-menu>

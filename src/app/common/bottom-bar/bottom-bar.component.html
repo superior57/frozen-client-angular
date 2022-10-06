@@ -1,0 +1,45 @@
+<div class="menu-container">
+  <a routerLink="/acceuil" class="bottom-icon" [class.selected]="(menuModel.active$ | async) === '/acceuil'">
+    <img src="assets/images/home-2365227.png">
+    <span>Acceuil</span>
+  </a>
+
+  <a
+    routerLink="/utilisateurs"
+    class="bottom-icon"
+    [class.selected]="(menuModel.active$ | async) === '/utilisateurs'"
+    *ngIf="user.userHasRoles(['admin']) | async"
+  >
+    <img src="assets/images/contacts-2365230.png">
+    <span>Utilisateurs</span>
+  </a>
+
+  <a
+    routerLink="/finances"
+    class="bottom-icon"
+    [class.selected]="(menuModel.active$ | async) === '/finances'"
+    *ngIf="user.userHasRoles(['admin', 'tresorerier', 'gen:01', 'gen:02', 'chef-departement']) | async"
+  >
+    <img src="assets/images/stocks-2365239.png">
+    <span>Caisse</span>
+  </a>
+
+  <a
+    routerLink="/tresorerie"
+    class="bottom-icon"
+    [class.selected]="(menuModel.active$ | async) === '/tresorerie'"
+    *ngIf="user.userHasRoles(['admin', 'tresorerier', 'gen:01', 'gen:02', 'chef-departement']) | async"
+  >
+    <img src="assets/images/wallet-2365237.png">
+    <span>Trésorerie</span>
+  </a>
+
+  <a
+    routerLink="/parametres"
+    class="bottom-icon"
+    [class.selected]="(menuModel.active$ | async) === '/parametres'"
+  >
+    <img src="assets/images/settings-2365240.png">
+    <span>Paramètres</span>
+  </a>
+</div>

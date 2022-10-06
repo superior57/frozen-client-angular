@@ -1,0 +1,35 @@
+:host {
+  width: 400px;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+
+  mat-form-field {
+    width: 100%;
+  }
+
+  .actions {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+
+    .negative {
+      margin-left: 16px;
+    }
+  }
+
+  .amount {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+
+    .amount {
+      margin-right: 16px;;
+    }
+
+    .currency {
+      width: calc(50% - 16px);
+    }
+  }
+}

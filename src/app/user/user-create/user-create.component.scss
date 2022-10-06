@@ -1,0 +1,16 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  width: 440px;
+
+  mat-form-field {
+    margin-left: 16px;
+  }
+  
+  .actions {
+    display: flex;
+    flex-direction: row;
+    margin-top: 32px;
+  }
+}

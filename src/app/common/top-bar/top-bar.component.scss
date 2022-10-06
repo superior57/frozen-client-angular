@@ -1,0 +1,97 @@
+@use '@material/top-app-bar/_index' as top-app-bar;
+@use '@material/tab/_index' as tab;
+@use '@material/tab-indicator/_index' as tab-indicator;
+@use '@material/ripple/_index' as ripple;
+@use '@material/theme/color-palette' as material-color;
+@use '@material/theme';
+
+:host {
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: auto;
+  z-index: 7000;
+  height: fit-content;
+
+  .mat-menu-panel {
+    overflow: hidden;
+  }
+
+  .navigation-icon {
+    margin-top: 16px;
+    width: fit-content;
+    height: fit-content;
+    cursor: pointer;
+
+    img {
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  .logo {
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    height: 48px;
+    margin-top: 16px;
+    margin-left: 8px;
+
+    img {
+      height: 48px;
+      margin-right: 8px;
+    }
+
+    .text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .line {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      margin-top: auto;
+    }
+
+    .slogan {
+      font-size: 12px;
+      font-weight: 400;
+      margin-bottom: auto;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  button {
+    width: fit-content;
+    height: fit-content;
+    margin-top: 16px;
+    margin-right: 16px;
+  }
+
+  .top-bar {
+    @include top-app-bar.fill-color(material-color.$indigo-500);
+
+    .mdc-tab-bar {
+      margin-top: 1em;
+
+      .mdc-tab {
+        @include tab.text-label-color(#fff);
+        @include tab.icon-color(#fff);
+      }
+      
+      .mdc-tab__ripple {
+        @include ripple.states(material-color.$amber-500);
+      }
+      
+      .mdc-tab-indicator {
+        @include tab-indicator.underline-color(material-color.$amber-500);
+        @include tab-indicator.underline-height(3px);
+      }    
+    }
+  }
+}

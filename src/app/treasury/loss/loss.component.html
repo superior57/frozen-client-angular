@@ -1,0 +1,4 @@
+<app-period-selector></app-period-selector>
+<app-free-entries-list
+  *ngIf="userModel.userHasRoles(['admin', 'tresorerier', 'gen:01', 'gen:02', 'cheflabo']) | async">
+</app-free-entries-list>

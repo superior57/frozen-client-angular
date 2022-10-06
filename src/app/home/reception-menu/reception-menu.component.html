@@ -1,0 +1,29 @@
+<!-- <app-departments-menu class="departments-menu"></app-departments-menu> -->
+
+<div class="logo">
+  <img src="assets/images/ok.png">
+</div>
+
+<ng-container *ngIf="userModel.userHasRoles(['admin', 'tresorerie', 'gen:01', 'gen:02']) | async">
+  <span class="mat-headline" >
+    Tableau de bord
+  </span>
+
+  <app-dashboard></app-dashboard>
+</ng-container>
+
+<ng-container *ngIf="(userModel.userHasRoles(['admin', 'tresorerie', 'gen:01', 'gen:02']) | async) === false">
+  <div class="menu-container">
+    <div
+      class="menu-item"
+      *ngFor="let dep of departments$ | async"
+      [style]="getMenuClass(dep.intitule.toLowerCase())"
+      (click)="openDepartment(dep)"
+    >
+      <div class="icon-container">
+        <img [src]="'assets/images/'+ getMenuIcon(dep.intitule.toLowerCase())">
+      </div>
+      <span>{{ dep.label }}</span>
+    </div>
+  </div>
+</ng-container>
